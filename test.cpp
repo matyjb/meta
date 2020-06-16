@@ -69,8 +69,8 @@ int main() {
 
 
 	std::cout << "Usuwanie duplikatow" << "\n";
-	// std::cout << NoDuplicates<ExampleType5>::Result::size << "\n";
-	// std::cout << NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result::size << "\n";
+	std::cout << NoDuplicates<ExampleType5>::Result::size << "\n";
+	std::cout << NoDuplicates<TypeList<int,char,int,long,char,long>>::Result::size << "\n";
 	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 0>::Result).name() << ", ";
 	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 1>::Result).name() << ", ";
 	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 2>::Result).name() << ", ";

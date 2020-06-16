@@ -172,14 +172,14 @@ struct Replace<TypeList<>, T, U> {
 //******************************************************
 
 
-// template <typename ListOfTypes>
-// struct NoDuplicates;
+template <typename ListOfTypes>
+struct NoDuplicates;
 
-// template <>
-// struct NoDuplicates<TypeList<>>
-// {
-// 	using Result = TypeList<>;
-// };
+template <>
+struct NoDuplicates<TypeList<>>
+{
+	using Result = TypeList<>;
+};
 
 // // template <typename Head>
 // // struct NoDuplicates<TypeList<Head>>
@@ -187,15 +187,15 @@ struct Replace<TypeList<>, T, U> {
 // // 	using Result = TypeList<Head>;
 // // };
 
-// template <typename Head, typename ...Tail>
-// struct NoDuplicates<TypeList<Head,Tail...>>
-// {
-// 	private:
-// 		using L1 = typename NoDuplicates<TypeList<Tail...>>::Result;
-// 		using L2 = typename Erase<L1, Head>::Result;
-// 	public:
-// 		using Result = InsertFront<Head, typename NoDuplicates<TypeList<L2...>>::Result>;
-// };
+template <typename Head, typename ...Tail>
+struct NoDuplicates<TypeList<Head,Tail...>>
+{
+	private:
+		using L1 = typename EraseAll<TypeList<Tail...>,Head>::Result;
+		using L2 = typename NoDuplicates<L1>::Result;
+	public:
+		using Result = typename InsertFront<Head, L2>::Result;
+};
 
 //******************************************************
 
