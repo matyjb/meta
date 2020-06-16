@@ -69,14 +69,20 @@ int main() {
 
 
 	std::cout << "Usuwanie duplikatow" << "\n";
-	std::cout << NoDuplicates<ExampleType5>::Result::size << "\n";
 	std::cout << NoDuplicates<TypeList<int,char,int,long,char,long>>::Result::size << "\n";
-	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 0>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 1>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 2>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 3>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 4>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long int>>::Result, 5>::Result).name() << "\n";
+	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 0>).name() << ", ";
+	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 1>).name() << ", ";
+	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 2>).name() << "\n";
+
+
+	std::cout << "Odwracanie listy" << "\n";
+	std::cout << Reverse<TypeList<int,char,int,long,char,long>>::Result::size << "\n";
+	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 0>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 1>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 2>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 3>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 4>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 5>::Result).name() << "\n";
 	// std::cout << typeid(TypeAt<ExampleType6, 0>::Result).name() << ", ";
 	// std::cout << typeid(TypeAt<ExampleType6, 1>::Result).name() << ", ";
 	// std::cout << typeid(TypeAt<ExampleType6, 2>::Result).name() << ", ";

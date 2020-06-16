@@ -203,8 +203,20 @@ struct NoDuplicates<TypeList<Head,Tail...>>
 template <class ListOfTypes>
 struct Reverse;
 
-// ...
+template <>
+struct Reverse<TypeList<>>
+{
+	using Result = TypeList<>;
+};
 
+template <typename Head, typename ...Tail>
+struct Reverse<TypeList<Head,Tail...>>
+{
+	private:
+		using L1 = typename Reverse<TypeList<Tail...>>::Result;
+	public:
+		using Result = typename Append<L1,Head>::Result;
+};
 //******************************************************
 
 
