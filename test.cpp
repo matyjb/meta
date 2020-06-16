@@ -70,7 +70,7 @@ int main() {
 	std::cout << typeid(TypeAt<EraseAll<ExampleType5,int>::Result, 0>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<EraseAll<ExampleType5,int>::Result, 1>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<EraseAll<ExampleType5,int>::Result, 2>::Result).name() << "\n";
-
+	std::cout << "\n";
 
 	std::cout << "Usuwanie duplikatow" << "\n";
 	std::cout << NoDuplicates<ExampleType5>::Result::size << "\n";
@@ -78,7 +78,7 @@ int main() {
 	std::cout << typeid(TypeAt<NoDuplicates<ExampleType5>::Result, 1>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<NoDuplicates<ExampleType5>::Result, 2>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<NoDuplicates<ExampleType5>::Result, 3>::Result).name() << "\n";
-
+	std::cout << "\n";
 
 	std::cout << "Odwracanie listy" << "\n";
 	std::cout << Reverse<ExampleType5>::Result::size << "\n";
