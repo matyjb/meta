@@ -142,7 +142,6 @@ struct EraseAll<TypeList<Head, Tail...>, Head> {
 
 template<typename Head, typename ... Tail, typename T>
 struct EraseAll<TypeList<Head, Tail...>, T> {
-	// using Result = typename InsertFront<Head, typename EraseAll<TypeList<Tail...>, T>::Result>::Result;
 	using Result = typename InsertFront<Head,typename EraseAll<TypeList<Tail...>,T>::Result>::Result;
 };
 
@@ -181,11 +180,11 @@ struct NoDuplicates<TypeList<>>
 	using Result = TypeList<>;
 };
 
-// // template <typename Head>
-// // struct NoDuplicates<TypeList<Head>>
-// // {
-// // 	using Result = TypeList<Head>;
-// // };
+// template <typename Head>
+// struct NoDuplicates<TypeList<Head>>
+// {
+// 	using Result = TypeList<Head>;
+// };
 
 template <typename Head, typename ...Tail>
 struct NoDuplicates<TypeList<Head,Tail...>>

@@ -56,7 +56,7 @@ int main() {
 
 	//sprawdzenie nowych funkcji:
 	std::cout << "\n";
-	std::cout << "Lista 5 o dlugości: " << ExampleType5::size << "\n";
+	std::cout << "Lista 5 o dlugosci: " << ExampleType5::size << "\n";
 	std::cout << typeid(TypeAt<ExampleType5, 0>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<ExampleType5, 1>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<ExampleType5, 2>::Result).name() << ", ";
@@ -65,14 +65,20 @@ int main() {
 	std::cout << typeid(TypeAt<ExampleType5, 5>::Result).name() << "\n";
 	std::cout << "\n";
 
-	std::cout << EraseAll<TypeList<int,int,int,long,char,int, long int>,long>::Result::size << "\n";
+	std::cout << "Usuwanie wszystkich longow" << "\n";
+	std::cout << EraseAll<TypeList<int,int,int,long,char,int, long>,long>::Result::size << "\n";
+	std::cout << typeid(TypeAt<EraseAll<TypeList<int,int,int,long,char,int, long>,long>::Result, 0>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<EraseAll<TypeList<int,int,int,long,char,int, long>,long>::Result, 1>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<EraseAll<TypeList<int,int,int,long,char,int, long>,long>::Result, 2>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<EraseAll<TypeList<int,int,int,long,char,int, long>,long>::Result, 3>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<EraseAll<TypeList<int,int,int,long,char,int, long>,long>::Result, 4>::Result).name() << "\n";
 
 
 	std::cout << "Usuwanie duplikatow" << "\n";
 	std::cout << NoDuplicates<TypeList<int,char,int,long,char,long>>::Result::size << "\n";
-	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 0>).name() << ", ";
-	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 1>).name() << ", ";
-	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 2>).name() << "\n";
+	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 0>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 1>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<NoDuplicates<TypeList<int,char,int,long,char,long>>::Result, 2>::Result).name() << "\n";
 
 
 	std::cout << "Odwracanie listy" << "\n";
@@ -83,10 +89,6 @@ int main() {
 	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 3>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 4>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<Reverse<TypeList<int,char,int,long,char,long>>::Result, 5>::Result).name() << "\n";
-	// std::cout << typeid(TypeAt<ExampleType6, 0>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<ExampleType6, 1>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<ExampleType6, 2>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<ExampleType6, 3>::Result).name() << "\n";
 	std::cout << "\n";
 
 	return 0;
