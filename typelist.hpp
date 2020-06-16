@@ -3,8 +3,6 @@
 
 #include <tuple>
 
-class NullType {};
-
 template<typename ... Args>
 struct TypeList;
 
