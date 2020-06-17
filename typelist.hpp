@@ -214,13 +214,77 @@ struct Reverse<TypeList<Head,Tail...>>
 	public:
 		using Result = typename Append<L1,Head>::Result;
 };
+
+
+//******************************************************
+
+
+template <bool flag, typename T, typename U>
+struct Select
+{
+	using Result = T;
+};
+
+template <typename T, typename U>
+struct Select<false, T, U>
+{
+	using Result = U;
+};
+
+
+//******************************************************
+
+
+template <typename T, typename U>
+struct IsSameType
+{
+	enum { value = false };
+};
+
+template <typename T>
+struct IsSameType<T, T>
+{
+	enum { value = true };
+};
+
+
+//******************************************************
+
+
+template <class T, class U>
+struct SuperSubclass
+{ //tu jest coś źle ze zwracaniem wartości
+	enum { value = IsSameType<T.name(), U.name()>::value };
+};
+
+template <>
+struct SuperSubclass<void, void>
+{
+	enum { value = false };
+};
+
+
 //******************************************************
 
 
 template <class T, class ListofTypes>
 struct MostDerived;
 
-// ...
+template <class T>
+struct MostDerived<TypeList<>, T>
+{
+	using Result = T;
+};
+
+template <class Head, class ...Tail, class T>
+struct MostDerived<TypeList<Head, Tail...>, T>
+{
+private:
+	using Candidate = typename MostDerived<Tail..., T>::Result;
+public:
+	using Result = typename Select<SuperSubclass<Candidate, Head>::value, Head, Candidate>::Result;
+};
+
 
 //******************************************************
 
@@ -228,7 +292,21 @@ struct MostDerived;
 template <class ListOfTypes>
 struct DerivedToFront;
 
-// ...
+template <>
+struct DerivedToFront<TypeList<>>
+{
+	using Result = TypeList<>;
+};
+
+template <class Head, class ...Tail>
+struct DerivedToFront<TypeList<Head, Tail...> >
+{
+private:
+	using TheMostDerived = typename MostDerived<Tail..., Head>::Result;
+	using L = typename Replace<Tail..., TheMostDerived, Head>::Result;
+public:
+	using Result = TypeList<TheMostDerived, L>::Result;
+};
+
 
 #endif
-
