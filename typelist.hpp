@@ -298,7 +298,7 @@ private:
 	using TheMostDerived = typename MostDerived<Tail..., Head>::Result;
 	using L = typename Replace<Tail..., TheMostDerived, Head>::Result;
 public:
-	using Result = TypeList<TheMostDerived, L>::Result;
+	using Result = TypeList<TheMostDerived, L>;
 };
 
 
