@@ -2,109 +2,109 @@
 #include <iostream>
 #include <vector>
 
-class Square;
-class Circle;
-class Triangle;
+class Dwarf;
+class Hobbit;
+class Elf;
 
-class ShapeVisitor : public Visitor<Square, Circle, Triangle>
+class MiddleEarthCreatureVisitor : public Visitor<Dwarf, Hobbit, Elf>
 {
 };
-class Shape : public Visitable<ShapeVisitor>
+class MiddleEarthCreature : public Visitable<MiddleEarthCreatureVisitor>
 {
 };
 
-class Square : public Shape
+class Dwarf : public MiddleEarthCreature
 {
-  void accept(ShapeVisitor& visitor)
-  {
-    visitor.visit(*this);
-  }
+	void accept(MiddleEarthCreatureVisitor& visitor)
+	{
+		visitor.visit(*this);
+	}
 };
 
-class Circle : public Shape
+class Hobbit : public MiddleEarthCreature
 {
-  void accept(ShapeVisitor& visitor)
-  {
-    visitor.visit(*this);
-  }
+	void accept(MiddleEarthCreatureVisitor& visitor)
+	{
+		visitor.visit(*this);
+	}
 };
 
-class Triangle : public Shape
+class Elf : public MiddleEarthCreature
 {
-  void accept(ShapeVisitor& visitor)
-  {
-    visitor.visit(*this);
-  }
+	void accept(MiddleEarthCreatureVisitor& visitor)
+	{
+		visitor.visit(*this);
+	}
 };
 
 //*****************************************************************
-// The 'draw' visitor.
+// The 'taking to Isengard' visitor.
 //*****************************************************************
-class DrawVisitor : public ShapeVisitor
+class TakingToIsengardVisitor : public MiddleEarthCreatureVisitor
 {
 public:
-  void visit(Square& square)
+  void visit(Dwarf& dwarf)
   {
-    std::cout << "Draw the square\n";
+    std::cout << "Taking the dwarfs to Isengard\n";
   }
 
-  void visit(Circle& circle)
+  void visit(Hobbit& hobbit)
   {
-    std::cout << "Draw the circle\n";
+    std::cout << "Taking the hobbits to Isengard\n";
   }
 
-  void visit(Triangle& triangle)
+  void visit(Elf& elf)
   {
-    std::cout << "Draw the triangle\n";
+    std::cout << "Taking the elves to Isengard\n";
   }
 };
 
 //*****************************************************************
 // The 'serialise' visitor.
 //*****************************************************************
-class SerialiseVisitor : public ShapeVisitor
+class SerialiseVisitor : public MiddleEarthCreatureVisitor
 {
 public:
-  void visit(Square& square)
+  void visit(Dwarf& dwarf)
   {
-    std::cout << "Serialise the square\n";
+    std::cout << "Serialise the dwarfs\n";
   }
 
-  void visit(Circle& circle)
+  void visit(Hobbit& hobbit)
   {
-    std::cout << "Serialise the circle\n";
+    std::cout << "Serialise the hobbits\n";
   }
 
-  void visit(Triangle& triangle)
+  void visit(Elf& elf)
   {
-    std::cout << "Serialise the triangle\n";
+    std::cout << "Serialise the elves\n";
   }
 };
 
-void apply(ShapeVisitor& visitor, std::vector<Shape*> shape_list)
+void apply(MiddleEarthCreatureVisitor& visitor, std::vector<MiddleEarthCreature*> middleearthcreature_list)
 {
-  for (std::vector<Shape*>::size_type i = 0; i < shape_list.size(); ++i)
+  for (std::vector<MiddleEarthCreature*>::size_type i = 0; i < middleearthcreature_list.size(); ++i)
   {
-    // Send the visitor to the shape.
-    shape_list[i]->accept(visitor);
+    // Send the visitor to the middle-earth creature.
+	  middleearthcreature_list[i]->accept(visitor);
   }
 }
 
 int main() {
-  Square square;
-  Circle circle;
-  Triangle triangle;
+  Dwarf Gimli;
+  Hobbit Bilbo;
+  Elf Legolas;
 
-  std::vector<Shape*> shapes;
-  shapes.push_back(&square);
-  shapes.push_back(&circle);
-  shapes.push_back(&triangle);
+  std::vector<MiddleEarthCreature*> middleearthcreatures;
+  middleearthcreatures.push_back(&Gimli);
+  middleearthcreatures.push_back(&Bilbo);
+  middleearthcreatures.push_back(&Legolas);
 
-  DrawVisitor drawVisitor;
+  TakingToIsengardVisitor takingtoIsengardVisitor;
   SerialiseVisitor serialiseVisitor;
 
-  apply(drawVisitor,shapes);
-  apply(serialiseVisitor,shapes);
+  apply(takingtoIsengardVisitor, middleearthcreatures);
+  apply(serialiseVisitor, middleearthcreatures);
 
   return 0;
 }
