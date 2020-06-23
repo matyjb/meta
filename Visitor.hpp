@@ -1,12 +1,11 @@
-#include "typelist.hpp"
 
 // VISITOR
-template <typename T, typename... Types>
-class Visitor : public Visitor<T>, public Visitor<Types...>
+template <typename T, typename ... Types>
+class Visitor : public Visitor<T>, public Visitor<Types ...>
 {
 public:
   using Visitor<T>::visit;
-  using Visitor<Types...>::visit;
+  using Visitor<Types ...>::visit;
 };
 
 template <typename T>
@@ -17,12 +16,12 @@ public:
 };
 
 // VISITABLE
-template <typename T, typename... Types>
+template <typename T, typename ... Types>
 class Visitable : public Visitable<T>, public Visitable<Types...>
 {
 public:
   using Visitable<T>::accept;
-  using Visitable<Types...>::accept;
+  using Visitable<Types ...>::accept;
 };
 
 template <typename T>
