@@ -13,10 +13,11 @@ using ExampleType4 = TypeList<ExampleType1, ExampleType2>;
 using ExampleType5 = TypeList<int, long int, int, bool, int, char>;
 
 class base {};
+class base2 {};
 class derived : base {};
 class mostderived2 : base {};
-class mostderived : derived {};
-class mostderived3 : derived {};
+class mostderived : derived, base2 {};
+class mostderived3 : base2 {};
 
 using ExampleType6 = TypeList<base, derived, mostderived2, mostderived, mostderived3>;
 
@@ -110,9 +111,13 @@ int main() {
 	std::cout << typeid(MostDerived<TypeList<mostderived3>, derived>::Result).name() << ", ";
 	std::cout << "\n";
 
+	std::cout << "Najbardziej pochodny element - ExampleType6" << "\n";
+	std::cout << typeid(MostDerived<ExampleType6, base>::Result).name() << ", ";
+	std::cout << typeid(MostDerived<ExampleType6, mostderived2>::Result).name() << ", ";
+	std::cout << "\n";
+
 	// std::cout << typeid(MostDerived<ExampleType6, mostderived>::Result).name() << ", ";
 	std::cout << "\n";
 
 	return 0;
 }
-
