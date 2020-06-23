@@ -260,46 +260,53 @@ struct is_base_of :
 //******************************************************
 
 
-template <class T, class ListofTypes>
+template < typename ListofTypes, typename T>
 struct MostDerived;
 
-template <class T>
+template <typename T>
 struct MostDerived<TypeList<>, T>
 {
-	using Result = T;
+	using Result = TypeList<T>;
 };
 
-template <class Head, class ...Tail, class T>
+template<typename Head, typename ... Tail>
+struct MostDerived<TypeList<Head, Tail...>, Head> {
+	using Result = typename MostDerived<TypeList<Tail...>,Head>::Result;
+};
+
+template <typename Head, typename ...Tail, typename T>
 struct MostDerived<TypeList<Head, Tail...>, T>
 {
 private:
-	using Candidate = typename MostDerived<Tail..., T>::Result;
+	using Candidate = typename MostDerived<TypeList<Tail...>, T>::Result;
 public:
-	using Result = typename Select<is_base_of<Candidate, Head>::value, Head, Candidate>::Result;
+	using Result = typename Select<is_base_of<Head, Candidate>::value, Head, Candidate>::Result;
 };
 
 
 //******************************************************
 
 
-template <class ListOfTypes>
-struct DerivedToFront;
+// template <class ListOfTypes>
+// struct DerivedToFront;
 
-template <>
-struct DerivedToFront<TypeList<>>
-{
-	using Result = TypeList<>;
-};
+// template <>
+// struct DerivedToFront<TypeList<>>
+// {
+// 	using Result = TypeList<>;
+// };
 
-template <class Head, class ...Tail>
-struct DerivedToFront<TypeList<Head, Tail...> >
-{
-private:
-	using TheMostDerived = typename MostDerived<Tail..., Head>::Result;
-	using L = typename Replace<Tail..., TheMostDerived, Head>::Result;
-public:
-	using Result = TypeList<TheMostDerived, L>;
-};
+// template <class Head, class ...Tail>
+// struct DerivedToFront<TypeList<Head, Tail...> >
+// {
+// private:
+// 	using TheMostDerived = typename MostDerived<Tail..., Head>::Result;
+// 	using L = typename Replace<Tail..., TheMostDerived, Head>::Result;
+// public:
+// 	using Result = TypeList<TheMostDerived, L>;
+// };
 
 
 #endif
+
+//******************************************************

@@ -90,6 +90,19 @@ int main() {
 	std::cout << typeid(TypeAt<Reverse<ExampleType5>::Result, 5>::Result).name() << "\n";
 	std::cout << "\n";
 
+	std::cout << "Najbardziej pochodny element" << "\n";
+	std::cout << MostDerived<ExampleType5,long int>::Result::size << "\n";
+	std::cout << typeid(TypeAt<MostDerived<ExampleType5, long int>::Result, 0>::Result).name() << ", ";
+	std::cout << "\n";
+
+	std::cout << MostDerived<ExampleType5,int>::Result::size << "\n";
+	std::cout << typeid(TypeAt<MostDerived<ExampleType5, int>::Result, 0>::Result).name() << ", ";
+	std::cout << "\n";
+
+	std::cout << MostDerived<ExampleType5,float>::Result::size << "\n";
+	std::cout << typeid(TypeAt<MostDerived<ExampleType5, float>::Result, 0>::Result).name() << ", ";
+	std::cout << "\n";
+
 	return 0;
 }
 
