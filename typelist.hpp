@@ -270,11 +270,11 @@ struct MostDerived<TypeList<>, T>
 	using Result = T;
 };
 
-template <typename Head, typename T>
-struct MostDerived<TypeList<Head>, T>
-{
-	using Result = typename Select<std::is_base_of<T,Head>::value,T, Head>::Result;
-};
+// template <typename Head, typename T>
+// struct MostDerived<TypeList<Head>, T>
+// {
+// 	using Result = typename Select<std::is_base_of<T,Head>::value,T, Head>::Result;
+// };
 
 template <typename Head, typename ...Tail, typename T>
 struct MostDerived<TypeList<Head, Tail...>, T>
