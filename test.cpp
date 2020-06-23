@@ -104,7 +104,7 @@ int main() {
 	std::cout << typeid(TypeAt<MostDerived<ExampleType6, base>::Result, 0>::Result).name() << ", ";
 	std::cout << "\n";
 
-	std::cout << typeid(TypeAt<MostDerived<ExampleType6, derived>::Result, 0>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<MostDerived<ExampleType6, mostderived>::Result, 0>::Result).name() << ", ";
 	std::cout << "\n";
 
 	return 0;
