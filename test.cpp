@@ -15,8 +15,9 @@ using ExampleType5 = TypeList<int, long int, int, bool, int, char>;
 class base {};
 class derived : base {};
 class mostderived2 : base {};
-class mostderived : derived {};
-class mostderived3 : derived {};
+class base2 {};
+class mostderived : derived, base2 {};
+class mostderived3 : base2 {};
 
 using ExampleType6 = TypeList<base, derived, mostderived2, mostderived, mostderived3>;
 
