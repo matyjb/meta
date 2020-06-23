@@ -101,10 +101,16 @@ int main() {
 	std::cout << "\n";
 
 	std::cout << "Najbardziej pochodny element" << "\n";
-	std::cout << typeid(TypeAt<MostDerived<ExampleType6, base>::Result, 0>::Result).name() << ", ";
+	std::cout << typeid(MostDerived<TypeList<mostderived>, base>::Result).name() << ", ";
+	std::cout << "\n";
+	std::cout << typeid(MostDerived<TypeList<mostderived,mostderived2>, base>::Result).name() << ", ";
+	std::cout << "\n";
+	std::cout << typeid(MostDerived<TypeList<mostderived,mostderived2>, derived>::Result).name() << ", ";
+	std::cout << "\n";
+	std::cout << typeid(MostDerived<TypeList<mostderived3>, derived>::Result).name() << ", ";
 	std::cout << "\n";
 
-	std::cout << typeid(TypeAt<MostDerived<ExampleType6, mostderived>::Result, 0>::Result).name() << ", ";
+	// std::cout << typeid(MostDerived<ExampleType6, mostderived>::Result).name() << ", ";
 	std::cout << "\n";
 
 	return 0;

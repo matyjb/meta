@@ -2,6 +2,7 @@
 #define __TYPELIST_HPP__
 
 #include <tuple>
+#include <type_traits>
 
 template<typename ... Args>
 struct TypeList;
@@ -235,26 +236,26 @@ struct Select<false, T, U>
 //******************************************************
 
 
-namespace details {
-	template <typename B>
-	std::true_type  test_pre_ptr_convertible(const volatile B*);
-	template <typename>
-	std::false_type test_pre_ptr_convertible(const volatile void*);
+// namespace details {
+// 	template <typename B>
+// 	std::true_type  test_pre_ptr_convertible(const volatile B*);
+// 	template <typename>
+// 	std::false_type test_pre_ptr_convertible(const volatile void*);
 
-	template <typename, typename>
-	auto test_pre_is_base_of(...)->std::true_type;
-	template <typename B, typename D>
-	auto test_pre_is_base_of(int) ->
-		decltype(test_pre_ptr_convertible<B>(static_cast<D*>(nullptr)));
-}
+// 	template <typename, typename>
+// 	auto test_pre_is_base_of(...)->std::true_type;
+// 	template <typename B, typename D>
+// 	auto test_pre_is_base_of(int) ->
+// 		decltype(test_pre_ptr_convertible<B>(static_cast<D*>(nullptr)));
+// }
 
-template <typename Base, typename Derived>
-struct is_base_of :
-	std::integral_constant<
-	bool,
-	std::is_class<Base>::value && std::is_class<Derived>::value &&
-	decltype(details::test_pre_is_base_of<Base, Derived>(0))::value
-	> { };
+// template <typename Base, typename Derived>
+// struct is_base_of :
+// 	std::integral_constant<
+// 	bool,
+// 	std::is_class<Base>::value && std::is_class<Derived>::value &&
+// 	decltype(details::test_pre_is_base_of<Base, Derived>(0))::value
+// 	> { };
 
 
 //******************************************************
@@ -266,13 +267,14 @@ struct MostDerived;
 template <typename T>
 struct MostDerived<TypeList<>, T>
 {
-	using Result = TypeList<T>;
+	using Result = T;
 };
 
-template<typename Head, typename ... Tail>
-struct MostDerived<TypeList<Head, Tail...>, Head> {
-	using Result = typename MostDerived<TypeList<Tail...>,Head>::Result;
-};
+// template <typename Head, typename T>
+// struct MostDerived<TypeList<Head>, T>
+// {
+// 	using Result = typename Select<std::is_base_of<T,Head>::value,T, Head>::Result;
+// };
 
 template <typename Head, typename ...Tail, typename T>
 struct MostDerived<TypeList<Head, Tail...>, T>
@@ -280,7 +282,9 @@ struct MostDerived<TypeList<Head, Tail...>, T>
 private:
 	using Candidate = typename MostDerived<TypeList<Tail...>, T>::Result;
 public:
-	using Result = typename Append<TypeList<Tail...>,Select<is_base_of<Candidate,Head>::value, Head, Candidate>>::Result;
+// 	using Result = typename Append<TypeList<Tail...>,Select<std::is_base_of<Candidate,Head>::value, Head, Candidate>>::Result;
+	using Result = typename Select<std::is_base_of<Candidate,Head>::value,Head, Candidate>::Result;
+	// using Result = typename Select<std::is_base_of<Head,Candidate>::value,Head, Candidate>::Result;
 };
 
 
