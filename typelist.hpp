@@ -280,7 +280,7 @@ struct MostDerived<TypeList<Head, Tail...>, T>
 private:
 	using Candidate = typename MostDerived<TypeList<Tail...>, T>::Result;
 public:
-	using Result = typename Select<is_base_of<Head, Candidate>::value, Head, Candidate>::Result;
+	using Result = typename Select<is_base_of<Candidate,Head>::value, Head, Candidate>::Result;
 };
 
 
