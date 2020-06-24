@@ -270,8 +270,11 @@ struct DerivedToFront<TypeList<Head, Tail...> >
 {
 private:
 	using TheMostDerived = typename MostDerived<TypeList<Tail...>, Head>::Result;
+	using Tmp = typename Replace<TypeList<Tail...>, TheMostDerived, Head>::Result;
+	using L = typename DerivedToFront<Tmp>::Result;
 public:
-	using Result = typename InsertFront<TheMostDerived, TypeList<Tail..., Head>>::Result;
+	// using Result = typename InsertFront<TheMostDerived, TypeList<Tail..., Head>>::Result;
+	using Result = TypeList<TheMostDerived, L...>;
 };
 
 #endif
