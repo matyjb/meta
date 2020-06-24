@@ -232,34 +232,7 @@ struct Select<false, T, U>
 	using Result = U;
 };
 
-
 //******************************************************
-
-
-// namespace details {
-// 	template <typename B>
-// 	std::true_type  test_pre_ptr_convertible(const volatile B*);
-// 	template <typename>
-// 	std::false_type test_pre_ptr_convertible(const volatile void*);
-
-// 	template <typename, typename>
-// 	auto test_pre_is_base_of(...)->std::true_type;
-// 	template <typename B, typename D>
-// 	auto test_pre_is_base_of(int) ->
-// 		decltype(test_pre_ptr_convertible<B>(static_cast<D*>(nullptr)));
-// }
-
-// template <typename Base, typename Derived>
-// struct is_base_of :
-// 	std::integral_constant<
-// 	bool,
-// 	std::is_class<Base>::value && std::is_class<Derived>::value &&
-// 	decltype(details::test_pre_is_base_of<Base, Derived>(0))::value
-// 	> { };
-
-
-//******************************************************
-
 
 template < typename ListofTypes, typename T>
 struct MostDerived;
@@ -270,46 +243,36 @@ struct MostDerived<TypeList<>, T>
 	using Result = T;
 };
 
-// template <typename Head, typename T>
-// struct MostDerived<TypeList<Head>, T>
-// {
-// 	using Result = typename Select<std::is_base_of<T,Head>::value,T, Head>::Result;
-// };
-
 template <typename Head, typename ...Tail, typename T>
 struct MostDerived<TypeList<Head, Tail...>, T>
 {
 private:
 	using Candidate = typename MostDerived<TypeList<Tail...>, T>::Result;
 public:
-// 	using Result = typename Append<TypeList<Tail...>,Select<std::is_base_of<Candidate,Head>::value, Head, Candidate>>::Result;
 	using Result = typename Select<std::is_base_of<Candidate,Head>::value,Head, Candidate>::Result;
-	// using Result = typename Select<std::is_base_of<Head,Candidate>::value,Head, Candidate>::Result;
 };
 
 
 //******************************************************
 
 
-// template <class ListOfTypes>
-// struct DerivedToFront;
+template <class ListOfTypes>
+struct DerivedToFront;
 
-// template <>
-// struct DerivedToFront<TypeList<>>
-// {
-// 	using Result = TypeList<>;
-// };
+template <>
+struct DerivedToFront<TypeList<>>
+{
+	using Result = TypeList<>;
+};
 
-// template <class Head, class ...Tail>
-// struct DerivedToFront<TypeList<Head, Tail...> >
-// {
-// private:
-// 	using TheMostDerived = typename MostDerived<Tail..., Head>::Result;
-// 	using L = typename Replace<Tail..., TheMostDerived, Head>::Result;
-// public:
-// 	using Result = TypeList<TheMostDerived, L>;
-// };
-
+template <class Head, class ...Tail>
+struct DerivedToFront<TypeList<Head, Tail...> >
+{
+private:
+	using TheMostDerived = typename MostDerived<TypeList<Tail...>, Head>::Result;
+public:
+	using Result = typename InsertFront<TheMostDerived, TypeList<Tail..., Head>>::Result;
+};
 
 #endif
 
