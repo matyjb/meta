@@ -1,4 +1,4 @@
-
+////////////////////////////////////////////////////////////////////////////////
 // The Loki Library
 // Copyright (c) 2001 by Andrei Alexandrescu
 // This code accompanies the book:
@@ -11,6 +11,7 @@
 // The author or Addison-Welsey Longman make no representations about the 
 //     suitability of this software for any purpose. It is provided "as is" 
 //     without express or implied warranty.
+////////////////////////////////////////////////////////////////////////////////
 #ifndef LOKI_TYPELISTMACROS_INC_
 #define LOKI_TYPELISTMACROS_INC_
 
@@ -20,11 +21,13 @@
 //#define LOKI_DISABLE_TYPELIST_MACROS
 #ifndef LOKI_DISABLE_TYPELIST_MACROS
 
+////////////////////////////////////////////////////////////////////////////////
 // macros LOKI_TYPELIST_1, LOKI_TYPELIST_2, ... LOKI_TYPELIST_50
 // Each takes a number of arguments equal to its numeric suffix
 // The arguments are type names. LOKI_TYPELIST_NN generates a typelist containing 
 //     all types passed as arguments, in that order.
 // Example: LOKI_TYPELIST_2(char, int) generates a type containing char and int.
+////////////////////////////////////////////////////////////////////////////////
 
 #define LOKI_TYPELIST_1(T1) ::Loki::Typelist<T1, ::Loki::NullType>
 
@@ -347,3 +350,4 @@
 #endif //LOKI_DISABLE_TYPELIST_MACROS
 
 #endif // end file guardian
+

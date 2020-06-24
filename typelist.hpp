@@ -176,12 +176,6 @@ struct NoDuplicates<TypeList<>>
 	using Result = TypeList<>;
 };
 
-// template <typename Head>
-// struct NoDuplicates<TypeList<Head>>
-// {
-// 	using Result = TypeList<Head>;
-// };
-
 template <typename Head, typename... Tail>
 struct NoDuplicates<TypeList<Head, Tail...>>
 {

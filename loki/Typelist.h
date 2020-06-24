@@ -1,4 +1,4 @@
-
+////////////////////////////////////////////////////////////////////////////////
 // The Loki Library
 // Copyright (c) 2001 by Andrei Alexandrescu
 // This code accompanies the book:
@@ -11,6 +11,7 @@
 // The author or Addison-Welsey Longman make no representations about the 
 //     suitability of this software for any purpose. It is provided "as is" 
 //     without express or implied warranty.
+////////////////////////////////////////////////////////////////////////////////
 #ifndef LOKI_TYPELIST_INC_
 #define LOKI_TYPELIST_INC_
 
@@ -24,12 +25,14 @@
 
 namespace Loki
 {
+////////////////////////////////////////////////////////////////////////////////
 // class template Typelist
 // The building block of typelists of any length
 // Use it through the LOKI_TYPELIST_NN macros
 // Defines nested types:
 //     Head (first element, a non-typelist type by convention)
 //     Tail (second element, can be another typelist)
+////////////////////////////////////////////////////////////////////////////////
 
     template <class T, class U>
     struct Typelist
@@ -43,11 +46,13 @@ namespace Loki
     namespace TL
     {
 
+////////////////////////////////////////////////////////////////////////////////
 // class template MakeTypelist
 // Takes a number of arguments equal to its numeric suffix
 // The arguments are type names.
 // MakeTypelist<T1, T2, ...>::Result
 // returns a typelist that is of T1, T2, ...
+////////////////////////////////////////////////////////////////////////////////
 
         template
         <
@@ -82,12 +87,14 @@ namespace Loki
             typedef NullType Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template Length
 // Computes the length of a typelist
 // Invocation (TList is a typelist):
 // Length<TList>::value
 // returns a compile-time constant containing the length of TList, not counting
 //     the end terminator (which by convention is NullType)
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList> struct Length;
         template <> struct Length<NullType>
@@ -101,6 +108,7 @@ namespace Loki
             enum { value = 1 + Length<U>::value };
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template TypeAt
 // Finds the type at a given index in a typelist
 // Invocation (TList is a typelist and index is a compile-time integral 
@@ -108,6 +116,7 @@ namespace Loki
 // TypeAt<TList, index>::Result
 // returns the type in position 'index' in TList
 // If you pass an out-of-bounds index, the result is a compile-time error
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, unsigned int index> struct TypeAt;
         
@@ -123,6 +132,7 @@ namespace Loki
             typedef typename TypeAt<Tail, i - 1>::Result Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template TypeAtNonStrict
 // Finds the type at a given index in a typelist
 // Invocations (TList is a typelist and index is a compile-time integral 
@@ -132,6 +142,7 @@ namespace Loki
 //     out-of-bounds
 // b) TypeAt<TList, index, D>::Result
 // returns the type in position 'index' in TList, or D if index is out-of-bounds
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, unsigned int index,
             typename DefaultType = NullType>
@@ -153,11 +164,13 @@ namespace Loki
                 TypeAtNonStrict<Tail, i - 1, DefaultType>::Result Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template IndexOf
 // Finds the index of a type in a typelist
 // Invocation (TList is a typelist and T is a type):
 // IndexOf<TList, T>::value
 // returns the position of T in TList, or NullType if T is not found in TList
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, class T> struct IndexOf;
         
@@ -182,11 +195,13 @@ namespace Loki
             enum { value = (temp == -1 ? -1 : 1 + temp) };
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template Append
 // Appends a type or a typelist to another
 // Invocation (TList is a typelist and T is either a type or a typelist):
 // Append<TList, T>::Result
 // returns a typelist that is TList followed by T and NullType-terminated
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, class T> struct Append;
         
@@ -214,11 +229,13 @@ namespace Loki
                 Result;
         };
         
+////////////////////////////////////////////////////////////////////////////////
 // class template Erase
 // Erases the first occurence, if any, of a type in a typelist
 // Invocation (TList is a typelist and T is a type):
 // Erase<TList, T>::Result
 // returns a typelist that is TList without the first occurence of T
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, class T> struct Erase;
         
@@ -242,11 +259,13 @@ namespace Loki
                 Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template EraseAll
 // Erases all first occurences, if any, of a type in a typelist
 // Invocation (TList is a typelist and T is a type):
 // EraseAll<TList, T>::Result
 // returns a typelist that is TList without any occurence of T
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, class T> struct EraseAll;
         template <class T>
@@ -269,10 +288,12 @@ namespace Loki
                 Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template NoDuplicates
 // Removes all duplicate types in a typelist
 // Invocation (TList is a typelist):
 // NoDuplicates<TList, T>::Result
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList> struct NoDuplicates;
         
@@ -291,11 +312,13 @@ namespace Loki
             typedef Typelist<Head, L2> Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template Replace
 // Replaces the first occurence of a type in a typelist, with another type
 // Invocation (TList is a typelist, T, U are types):
 // Replace<TList, T, U>::Result
 // returns a typelist in which the first occurence of T is replaced with U
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, class T, class U> struct Replace;
         
@@ -319,11 +342,13 @@ namespace Loki
                 Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template ReplaceAll
 // Replaces all occurences of a type in a typelist, with another type
 // Invocation (TList is a typelist, T, U are types):
 // Replace<TList, T, U>::Result
 // returns a typelist in which all occurences of T is replaced with U
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, class T, class U> struct ReplaceAll;
         
@@ -347,11 +372,13 @@ namespace Loki
                 Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template Reverse
 // Reverses a typelist
 // Invocation (TList is a typelist):
 // Reverse<TList>::Result
 // returns a typelist that is TList reversed
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList> struct Reverse;
         
@@ -368,11 +395,13 @@ namespace Loki
                 typename Reverse<Tail>::Result, Head>::Result Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template MostDerived
 // Finds the type in a typelist that is the most derived from a given type
 // Invocation (TList is a typelist, T is a type):
 // MostDerived<TList, T>::Result
 // returns the type in TList that's the most derived from T
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList, class T> struct MostDerived;
         
@@ -393,11 +422,13 @@ namespace Loki
                     Head, Candidate>::Result Result;
         };
 
+////////////////////////////////////////////////////////////////////////////////
 // class template DerivedToFront
 // Arranges the types in a typelist so that the most derived types appear first
 // Invocation (TList is a typelist):
 // DerivedToFront<TList>::Result
 // returns the reordered TList 
+////////////////////////////////////////////////////////////////////////////////
 
         template <class TList> struct DerivedToFront;
         
@@ -425,3 +456,4 @@ namespace Loki
 
 
 #endif // end file guardian
+

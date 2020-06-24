@@ -3,12 +3,12 @@
 #include <typeindex>
 
 #include "typelist.hpp"
-#include "lokiloki/Typelist.h"
-#include "lokiloki/TypelistMacros.h"
+#include "loki/Typelist.h"
+#include "loki/TypelistMacros.h"
 
-class base {};
-class derived : public base {};
-class mostderived2 : public base {};
+class obj {};
+class derived : public obj {};
+class mostderived2 : public obj {};
 class base2 {};
 class mostderived : public derived, public base2 {};
 class mostderived3 : public base2 {};
@@ -23,8 +23,8 @@ using ET4 = TypeList<char, float, int, char>;
 using ET4Loki = LOKI_TYPELIST_4(char, float, int, char);
 using ET5 = TypeList<int, long int, int, bool, int, char>;
 using ET5Loki = LOKI_TYPELIST_6(int, long int, int, bool, int, char);
-using ET6 = TypeList<base, derived, mostderived2, mostderived, mostderived3, base2>;
-using ET6Loki = LOKI_TYPELIST_6(base, derived, mostderived2, mostderived, mostderived3, base2);
+using ET6 = TypeList<obj, derived, mostderived2, mostderived, mostderived3, base2>;
+using ET6Loki = LOKI_TYPELIST_6(obj, derived, mostderived2, mostderived, mostderived3, base2);
 
 
 int main() {
