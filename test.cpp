@@ -13,7 +13,6 @@ using ExampleType4 = TypeList<ExampleType1, ExampleType2>;
 using ExampleType5 = TypeList<int, long int, int, bool, int, char>;
 
 class base {};
-class base2 {};
 class derived : base {};
 class mostderived2 : base {};
 class base2 {};
@@ -120,7 +119,7 @@ int main() {
 	// std::cout << typeid(MostDerived<ExampleType6, mostderived>::Result).name() << ", ";
 	std::cout << "\n";
 
-	std::cout << "Sortowanie od najbardziej zagnieżdżonych klas" << "\n";
+	std::cout << "Sortowanie od najbardziej zagniezdzonych klas" << "\n";
 	std::cout << DerivedToFront<ExampleType6>::Result::size << "\n";
 	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 0>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 1>::Result).name() << ", ";
@@ -128,7 +127,7 @@ int main() {
 	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 3>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 4>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 5>::Result).name() << ", ";
-	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 6>::Result).name() << "\n";
+	// std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 6>::Result).name() << "\n";
 	std::cout << "\n";
 
 	return 0;

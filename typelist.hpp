@@ -251,7 +251,6 @@ public:
 
 //******************************************************
 
-
 template <class ListOfTypes>
 struct DerivedToFront;
 
@@ -261,16 +260,17 @@ struct DerivedToFront<TypeList<>>
 	using Result = TypeList<>;
 };
 
-template <class Head, class ...Tail>
-struct DerivedToFront<TypeList<Head, Tail...> >
+template <class Head, class... Tail>
+struct DerivedToFront<TypeList<Head, Tail...>>
 {
 private:
 	using TheMostDerived = typename MostDerived<TypeList<Tail...>, Head>::Result;
-	using Tmp = typename Replace<TypeList<Tail...>, TheMostDerived, Head>::Result;
-	using L = typename DerivedToFront<Tmp>::Result;
+	using Tmp = typename Erase<TypeList<Tail..., Head>, TheMostDerived>::Result;
+	// using L = typename DerivedToFront<Tmp>::Result;
+
 public:
-	// using Result = typename InsertFront<TheMostDerived, TypeList<Tail..., Head>>::Result;
-	using Result = TypeList<TheMostDerived, L...>;
+	using Result = typename InsertFront<TheMostDerived, typename DerivedToFront<Tmp>::Result>::Result;
+	// using Result = TypeList<TheMostDerived, L...>;
 };
 
 #endif
