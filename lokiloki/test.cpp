@@ -29,13 +29,13 @@ int main() {
 
 	std::cout << "Sortowanie od najbardziej zagniezdzonych klas" << "\n";
 	// std::cout << Loki::TL::DerivedToFront<LOKI_TYPELIST_6(mostderived,mostderived2,base,base2,mostderived3,derived)>::Result << "\n";
-  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_7(mostderived,mostderived2,base,base2,mostderived3,derived, derived)>::Result, 0>::Result).name() << ", ";
-  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_7(mostderived,mostderived2,base,base2,mostderived3,derived, derived)>::Result, 1>::Result).name() << ", ";
-  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_7(mostderived,mostderived2,base,base2,mostderived3,derived, derived)>::Result, 2>::Result).name() << ", ";
-  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_7(mostderived,mostderived2,base,base2,mostderived3,derived, derived)>::Result, 3>::Result).name() << ", ";
-  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_7(mostderived,mostderived2,base,base2,mostderived3,derived, derived)>::Result, 4>::Result).name() << ", ";
-  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_7(mostderived,mostderived2,base,base2,mostderived3,derived, derived)>::Result, 5>::Result).name() << ", ";
-  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_7(mostderived,mostderived2,base,base2,mostderived3,derived, derived)>::Result, 6>::Result).name() << ", ";
+  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_6(base, derived, mostderived2, mostderived, mostderived3, base2)>::Result, 0>::Result).name() << ", ";
+  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_6(base, derived, mostderived2, mostderived, mostderived3, base2)>::Result, 1>::Result).name() << ", ";
+  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_6(base, derived, mostderived2, mostderived, mostderived3, base2)>::Result, 2>::Result).name() << ", ";
+  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_6(base, derived, mostderived2, mostderived, mostderived3, base2)>::Result, 3>::Result).name() << ", ";
+  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_6(base, derived, mostderived2, mostderived, mostderived3, base2)>::Result, 4>::Result).name() << ", ";
+  std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_6(base, derived, mostderived2, mostderived, mostderived3, base2)>::Result, 5>::Result).name() << ", ";
+  // std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<LOKI_TYPELIST_6(base, derived, mostderived2, mostderived, mostderived3, base2)>::Result, 6>::Result).name() << ", ";
 	// std::cout << "\n";
 
 	return 0;

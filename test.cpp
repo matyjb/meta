@@ -126,8 +126,7 @@ int main() {
 	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 2>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 3>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 4>::Result).name() << ", ";
-	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 5>::Result).name() << ", ";
-	// std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 6>::Result).name() << "\n";
+	std::cout << typeid(TypeAt<DerivedToFront<ExampleType6>::Result, 5>::Result).name() << "/n";
 	std::cout << "\n";
 
 	return 0;
