@@ -251,24 +251,26 @@ public:
 
 //******************************************************
 
-// template <class ListOfTypes>
-// struct DerivedToFront;
+template <class ListOfTypes>
+struct DerivedToFront;
 
-// template <>
-// struct DerivedToFront<TypeList<>>
-// {
-// 	using Result = TypeList<>;
-// };
+template <>
+struct DerivedToFront<TypeList<>>
+{
+	using Result = TypeList<>;
+};
 
-// template <class Head, class ...Tail>
-// struct DerivedToFront<TypeList<Head, Tail...> >
-// {
-// private:
-// 	using TheMostDerived = typename MostDerived<Tail..., Head>::Result;
-// 	using L = typename Replace<Tail..., TheMostDerived, Head>::Result;
-// public:
-// 	using Result = TypeList<TheMostDerived, L>;
-// };
+template <class Head, class... Tail>
+struct DerivedToFront<TypeList<Head, Tail...>>
+{
+private:
+	using TheMostDerived = typename MostDerived<TypeList<Tail...>, Head>::Result;
+	using Tmp = typename Replace<TypeList<Tail...>, TheMostDerived, Head>::Result;
+	using L = typename DerivedToFront<Tmp>::Result;
+
+public:
+	using Result = typename InsertFront<TheMostDerived, L>::Result;
+};
 
 #endif
 
