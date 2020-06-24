@@ -6,12 +6,14 @@
 #include "loki/Typelist.h"
 #include "loki/TypelistMacros.h"
 
-class obj {};
-class derived : public obj {};
-class mostderived2 : public obj {};
-class base2 {};
-class mostderived : public derived, public base2 {};
-class mostderived3 : public base2 {};
+class zwierze {};
+class ssak : public zwierze {};
+class ptak : public zwierze {};
+class maszyna {};
+class kon : public ssak {};
+class czlowiek : public ssak {};
+class pelikan : public ptak {};
+class samolot : public ptak, public maszyna {};
 
 using ET1 = TypeList<int>;
 using ET1Loki = LOKI_TYPELIST_1(int);
@@ -23,8 +25,8 @@ using ET4 = TypeList<char, float, int, char>;
 using ET4Loki = LOKI_TYPELIST_4(char, float, int, char);
 using ET5 = TypeList<int, long int, int, bool, int, char>;
 using ET5Loki = LOKI_TYPELIST_6(int, long int, int, bool, int, char);
-using ET6 = TypeList<obj, derived, mostderived2, mostderived, mostderived3, base2>;
-using ET6Loki = LOKI_TYPELIST_6(obj, derived, mostderived2, mostderived, mostderived3, base2);
+using ET6 = TypeList<samolot, pelikan, ssak, kon, maszyna, czlowiek, zwierze, ptak>;
+using ET6Loki = LOKI_TYPELIST_8(samolot, pelikan, ssak, kon, maszyna, czlowiek, zwierze, ptak);
 
 
 int main() {
@@ -81,12 +83,12 @@ int main() {
 	std::cout << typeid(TypeAt<ET6, 4>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<ET6, 5>::Result).name() << "\n";
 	std::cout << "(schemat dziedziczenia klas dostepny w pliku png)\n";
-	std::cout << "MostDerived<ET6, derived>: " << typeid(MostDerived<ET6, derived>::Result).name() << "\n";
-	std::cout << "Loki::TL::MostDerived<ET6, derived>: " << typeid(Loki::TL::MostDerived<ET6Loki, derived>::Result).name() << "\n";
-	std::cout << "MostDerived<ET6, base2>: " << typeid(MostDerived<ET6, base2>::Result).name() << "\n";
-	std::cout << "Loki::TL::MostDerived<ET6, base2>: " << typeid(Loki::TL::MostDerived<ET6Loki, base2>::Result).name() << "\n";
-	std::cout << "MostDerived<ET6, mostderived>: " << typeid(MostDerived<ET6, mostderived>::Result).name() << "\n";
-	std::cout << "Loki::TL::MostDerived<ET6, mostderived>: " << typeid(Loki::TL::MostDerived<ET6Loki, mostderived>::Result).name() << "\n";
+	std::cout << "MostDerived<ET6, samolot>: " << typeid(MostDerived<ET6, samolot>::Result).name() << "\n";
+	std::cout << "Loki::TL::MostDerived<ET6, samolot>: " << typeid(Loki::TL::MostDerived<ET6Loki, samolot>::Result).name() << "\n";
+	std::cout << "MostDerived<ET6, czlowiek>: " << typeid(MostDerived<ET6, czlowiek>::Result).name() << "\n";
+	std::cout << "Loki::TL::MostDerived<ET6, czlowiek>: " << typeid(Loki::TL::MostDerived<ET6Loki, czlowiek>::Result).name() << "\n";
+	std::cout << "MostDerived<ET6, zwierze>: " << typeid(MostDerived<ET6, zwierze>::Result).name() << "\n";
+	std::cout << "Loki::TL::MostDerived<ET6, zwierze>: " << typeid(Loki::TL::MostDerived<ET6Loki, zwierze>::Result).name() << "\n";
 
 	std::cout << "##########################################" << "\n";
 	std::cout << "############# DerivedToFront #############" << "\n";
