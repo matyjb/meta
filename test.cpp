@@ -16,6 +16,7 @@ class base {};
 class base2 {};
 class derived : base {};
 class mostderived2 : base {};
+class base2 {};
 class mostderived : derived, base2 {};
 class mostderived3 : base2 {};
 
