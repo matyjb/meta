@@ -6,7 +6,7 @@ Uzupełnij podany plik nagłówkowy z szablonem listy typów. (testTypelist.cpp 
 Wypełnij szablony NoDuplicates, Reverse, MostDerived, DerivedToFront (zgodnie z informacjami na wykładzie).
 Napisz prosty program demonstrujący działanie szablonów.
 
-`g++ testTypelist.cpp`
+`g++ testTypelist.cpp -std=c++17`
 
 ## Zadanie 2
 
@@ -15,4 +15,4 @@ Nie musi to być implementacja uniwersalna; może być przeznaczona do konkretne
 [wikipedia Visitor_pattern](https://en.wikipedia.org/wiki/Visitor_pattern)
 [wikipedia Multiple_dispatch](https://en.wikipedia.org/wiki/Multiple_dispatch)
 
-`g++ testVisitor.cpp`
+`g++ testVisitor.cpp -std=c++17`
