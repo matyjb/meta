@@ -1,0 +1,44 @@
+##########################################
+### Usuwanie duplikatow (NoDuplicates) ###
+##########################################
+Testowa lista: c, f, i, c
+NoDuplicates (size: 3):
+c, f, i
+Loki::TL::NoDuplicates (size: 3):
+c, f, i
+##########################################
+####### Odwracanie listy (Reverse) #######
+##########################################
+Testowa lista: i, l, i, b, i, c
+Reverse (size: 6):
+c, i, b, i, l, i
+Loki::TL::Reverse (size: 6):
+c, i, b, i, l, i
+##########################################
+### Najbardziej pochodny (MostDerived) ###
+##########################################
+Testowa lista: 7samolot, 7pelikan, 4ssak, 3kon, 7maszyna, 8czlowiek
+(schemat dziedziczenia klas dostepny w pliku png)
+MostDerived<ET6, samolot>: 7samolot
+Loki::TL::MostDerived<ET6, samolot>: 7samolot
+MostDerived<ET6, czlowiek>: 8czlowiek
+Loki::TL::MostDerived<ET6, czlowiek>: 8czlowiek
+MostDerived<ET6, zwierze>: 7pelikan
+Loki::TL::MostDerived<ET6, zwierze>: 7pelikan
+##########################################
+############# DerivedToFront #############
+##########################################
+Testowa lista: 7samolot, 7pelikan, 4ssak, 3kon, 7maszyna, 8czlowiek, 7zwierze, 4ptak
+DerivedToFront (size: 8):
+7samolot, 7pelikan, 8czlowiek, 3kon, 7maszyna, 4ssak, 4ptak, 7zwierze
+Loki::TL::DerivedToFront (size: 8):
+7samolot, 7pelikan, 8czlowiek, 3kon, 7maszyna, 4ssak, 4ptak, 7zwierze
+##########################################
+############## Visitor test ##############
+##########################################
+Caly mesh na niebiesko
+Caly text na niebiesko
+Caly button na niebiesko
+Rendering mesh
+Rendering text
+Rendering button

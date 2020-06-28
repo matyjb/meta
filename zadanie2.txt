@@ -1,4 +1,0 @@
-Za pomocą listy typów (bo są i inne możliwości) zaimplementować wzorzec wizytatora lub przełącznik typów.
-Nie musi to być implementacja uniwersalna; może być przeznaczona do konkretnego zastosowania.
-https://en.wikipedia.org/wiki/Visitor_pattern
-https://en.wikipedia.org/wiki/Multiple_dispatch

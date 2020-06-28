@@ -61,6 +61,9 @@ void apply(GameObjectVisitor& visitor, std::vector<Visitable<GameObjectVisitor>*
 }
 
 int main() {
+  std::cout << "##########################################" << "\n";
+	std::cout << "############## Visitor test ##############" << "\n";
+	std::cout << "##########################################" << "\n";
   Mesh mesh;
   Text text;
   Button button;

@@ -1,3 +1,0 @@
-Uzupełnij podany plik nagłówkowy z szablonem listy typów. (test.cpp typelist.hpp)
-Wypełnij szablony NoDuplicates, Reverse, MostDerived, DerivedToFront (zgodnie z informacjami na wykładzie).
-Napisz prosty program demonstrujący działanie szablonów.
