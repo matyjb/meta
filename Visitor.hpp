@@ -31,6 +31,7 @@ public:
   virtual void accept(T &visitor) = 0;
 };
 
+// Implementacja funkcji accept
 template<typename T, typename Visitor>
 class VisitableImpl : public Visitable<Visitor>
 {

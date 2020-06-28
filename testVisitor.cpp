@@ -5,12 +5,14 @@
 class Mesh;
 class Text;
 class Button;
-
 class GameObjectVisitor : public Visitor<Mesh, Text, Button> {};
+
+// implementacja funkcji accept dla wszystkich typow
 class Mesh : public VisitableImpl<Mesh,GameObjectVisitor>{};
 class Text : public VisitableImpl<Text,GameObjectVisitor>{};
 class Button : public VisitableImpl<Button,GameObjectVisitor>{};
 
+// dwa przykladowe Visitor'y
 class Renderer : public GameObjectVisitor
 {
 public:
@@ -49,14 +51,12 @@ public:
   }
 };
 
-
-
 // pomocnicza funkcja
-void apply(GameObjectVisitor& visitor, std::vector<Visitable<GameObjectVisitor>*> gameObject_list)
+void apply(GameObjectVisitor& visitor, std::vector<Visitable<GameObjectVisitor>*> gameObjects)
 {
-  for (std::vector<Visitable<GameObjectVisitor>*>::size_type i = 0; i < gameObject_list.size(); ++i)
+  for (std::vector<Visitable<GameObjectVisitor>*>::size_type i = 0; i < gameObjects.size(); ++i)
   {
-	  gameObject_list[i]->accept(visitor);
+	  gameObjects[i]->accept(visitor);
   }
 }
 
@@ -73,8 +73,8 @@ int main() {
   ShaderAllBlue allBlueShader;
   Renderer renderer;
 
-  apply(renderer, gameObjects);
   apply(allBlueShader, gameObjects);
+  apply(renderer, gameObjects);
 
   return 0;
 }

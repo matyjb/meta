@@ -99,21 +99,27 @@ int main() {
 	std::cout << typeid(TypeAt<ET6, 2>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<ET6, 3>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<ET6, 4>::Result).name() << ", ";
-	std::cout << typeid(TypeAt<ET6, 5>::Result).name() << "\n";
+	std::cout << typeid(TypeAt<ET6, 5>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<ET6, 6>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<ET6, 7>::Result).name() << "\n";
 	std::cout << "DerivedToFront (size: " << DerivedToFront<ET6>::Result::size << "):\n";
 	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 0>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 1>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 2>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 3>::Result).name() << ", ";
 	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 4>::Result).name() << ", ";
-	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 5>::Result).name() << "\n";
+	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 5>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 6>::Result).name() << ", ";
+	std::cout << typeid(TypeAt<DerivedToFront<ET6>::Result, 7>::Result).name() << "\n";
 	std::cout << "Loki::TL::DerivedToFront (size: " << Loki::TL::Length<Loki::TL::DerivedToFront<ET6Loki>::Result>::value << "):\n";
 	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 0>::Result).name() << ", ";
 	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 1>::Result).name() << ", ";
 	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 2>::Result).name() << ", ";
 	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 3>::Result).name() << ", ";
 	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 4>::Result).name() << ", ";
-	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 5>::Result).name() << "\n";
+	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 5>::Result).name() << ", ";
+	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 6>::Result).name() << ", ";
+	std::cout << typeid(Loki::TL::TypeAt<Loki::TL::DerivedToFront<ET6Loki>::Result, 7>::Result).name() << "\n";
 	
 	return 0;
 }
