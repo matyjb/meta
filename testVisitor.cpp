@@ -2,109 +2,79 @@
 #include <iostream>
 #include <vector>
 
-class Dwarf;
-class Hobbit;
-class Elf;
+class Mesh;
+class Text;
+class Button;
 
-class MiddleEarthCreatureVisitor : public Visitor<Dwarf, Hobbit, Elf>
-{
-};
-class MiddleEarthCreature : public Visitable<MiddleEarthCreatureVisitor>
-{
-};
+class GameObjectVisitor : public Visitor<Mesh, Text, Button> {};
+class Mesh : public VisitableImpl<Mesh,GameObjectVisitor>{};
+class Text : public VisitableImpl<Text,GameObjectVisitor>{};
+class Button : public VisitableImpl<Button,GameObjectVisitor>{};
 
-class Dwarf : public MiddleEarthCreature
-{
-	void accept(MiddleEarthCreatureVisitor& visitor)
-	{
-		visitor.visit(*this);
-	}
-};
-
-class Hobbit : public MiddleEarthCreature
-{
-	void accept(MiddleEarthCreatureVisitor& visitor)
-	{
-		visitor.visit(*this);
-	}
-};
-
-class Elf : public MiddleEarthCreature
-{
-	void accept(MiddleEarthCreatureVisitor& visitor)
-	{
-		visitor.visit(*this);
-	}
-};
-
-//*****************************************************************
-// The 'taking to Isengard' visitor.
-//*****************************************************************
-class TakingToIsengardVisitor : public MiddleEarthCreatureVisitor
+class Renderer : public GameObjectVisitor
 {
 public:
-  void visit(Dwarf& dwarf)
+  void visit(Mesh& Mesh)
   {
-    std::cout << "Taking the dwarfs to Isengard\n";
+    std::cout << "Rendering mesh\n";
   }
 
-  void visit(Hobbit& hobbit)
+  void visit(Text& Text)
   {
-    std::cout << "Taking the hobbits to Isengard\n";
+    std::cout << "Rendering text\n";
   }
 
-  void visit(Elf& elf)
+  void visit(Button& Text)
   {
-    std::cout << "Taking the elves to Isengard\n";
+    std::cout << "Rendering button\n";
   }
 };
 
-//*****************************************************************
-// The 'serialise' visitor.
-//*****************************************************************
-class SerialiseVisitor : public MiddleEarthCreatureVisitor
+class ShaderAllBlue : public GameObjectVisitor
 {
 public:
-  void visit(Dwarf& dwarf)
+  void visit(Mesh& Mesh)
   {
-    std::cout << "Serialise the dwarfs\n";
+    std::cout << "Caly mesh na niebiesko\n";
   }
 
-  void visit(Hobbit& hobbit)
+  void visit(Text& Text)
   {
-    std::cout << "Serialise the hobbits\n";
+    std::cout << "Caly text na niebiesko\n";
   }
 
-  void visit(Elf& elf)
+  void visit(Button& Text)
   {
-    std::cout << "Serialise the elves\n";
+    std::cout << "Caly button na niebiesko\n";
   }
 };
 
-void apply(MiddleEarthCreatureVisitor& visitor, std::vector<MiddleEarthCreature*> middleearthcreature_list)
+
+
+// pomocnicza funkcja
+void apply(GameObjectVisitor& visitor, std::vector<Visitable<GameObjectVisitor>*> gameObject_list)
 {
-  for (std::vector<MiddleEarthCreature*>::size_type i = 0; i < middleearthcreature_list.size(); ++i)
+  for (std::vector<Visitable<GameObjectVisitor>*>::size_type i = 0; i < gameObject_list.size(); ++i)
   {
-    // Send the visitor to the middle-earth creature.
-	  middleearthcreature_list[i]->accept(visitor);
+	  gameObject_list[i]->accept(visitor);
   }
 }
 
 int main() {
-  Dwarf Gimli;
-  Hobbit Bilbo;
-  Elf Legolas;
+  Mesh mesh;
+  Text text;
+  Button button;
 
-  std::vector<MiddleEarthCreature*> middleearthcreatures;
-  middleearthcreatures.push_back(&Gimli);
-  middleearthcreatures.push_back(&Bilbo);
-  middleearthcreatures.push_back(&Legolas);
+  std::vector<Visitable<GameObjectVisitor>*> gameObjects;
+  gameObjects.push_back(&mesh);
+  gameObjects.push_back(&text);
+  gameObjects.push_back(&button);
 
-  TakingToIsengardVisitor takingtoIsengardVisitor;
-  SerialiseVisitor serialiseVisitor;
+  ShaderAllBlue allBlueShader;
+  Renderer renderer;
 
-  apply(takingtoIsengardVisitor, middleearthcreatures);
-  apply(serialiseVisitor, middleearthcreatures);
+  apply(renderer, gameObjects);
+  apply(allBlueShader, gameObjects);
 
   return 0;
 }

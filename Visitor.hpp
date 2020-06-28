@@ -30,3 +30,12 @@ class Visitable<T>
 public:
   virtual void accept(T &visitor) = 0;
 };
+
+template<typename T, typename Visitor>
+class VisitableImpl : public Visitable<Visitor>
+{
+  virtual void accept(Visitor& visitor)
+	{
+		visitor.visit(static_cast<T&>(*this));
+	}
+};
